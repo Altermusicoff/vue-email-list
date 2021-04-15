@@ -3,9 +3,10 @@
 // REPO: vue - email - list
 // GOAL: Attraverso l'apposita API di Boolean generare 10 indirizzi email e stamparli in pagina all'interno di una lista.
 
+
 function addClickListener() {
     const btn = $('#btn');
-    btn.click(emailGenerator);
+    btn.click(tenEmailGenerator);
 }
 function emailGenerator() {
     $.ajax({
@@ -14,6 +15,8 @@ function emailGenerator() {
         success: function (data) {
             const res = data.response;
             console.log(res);
+            const target = $('#target');
+            target.append('<li>' + res + '</li>');
         },
         error: function () {
             console.log('error');
@@ -21,23 +24,13 @@ function emailGenerator() {
     });
 }
 
-function generateEmail(value){
-    const target = $("target");
-
+function tenEmailGenerator(){
+   
     for (let i = 0; i < 10; i++) {
-        const target = targets[i];
-        
+        emailGenerator();    
     }
 }
 
-// function generateBox(type) {
-//     const target = $('#target');
-//     if (type) {
-//         target.append('<div class="box bg-red"></div>');
-//     } else {
-//         target.append('<div class="box bg-green"></div>');
-//     }
-// }
 function init() {
     addClickListener();
 }
